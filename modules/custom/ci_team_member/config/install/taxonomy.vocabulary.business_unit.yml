@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Business Unit'
-vid: business_unit
-description: ''
-weight: 0

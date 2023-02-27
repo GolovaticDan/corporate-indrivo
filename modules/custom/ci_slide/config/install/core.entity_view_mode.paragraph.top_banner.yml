@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - paragraphs
-id: paragraph.top_banner
-label: 'Top Banner'
-targetEntityType: paragraph
-cache: true

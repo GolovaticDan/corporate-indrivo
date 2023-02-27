@@ -1,9 +1,0 @@
-name: Corporate Indrivo Partner
-type: module
-description: 'The Partner configuration.'
-package: Corporate Indrivo
-version: CORPORATE_INDRIVO_VERSION
-core_version_requirement: ^8 || ^9 || ^10
-dependencies:
-  - drupal:paragraphs
-  - drupal:social_media
