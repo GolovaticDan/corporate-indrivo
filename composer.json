@@ -96,6 +96,7 @@
         "indrivo/web_feedback": "dev-develop",
         "drupal/yoast_seo": "^1.8",
         "drush/drush": "^11.3",
+        "indrivo/corporate-indrivo": "dev-main",
         "wikimedia/composer-merge-plugin": "^2.0"
     },
     "conflict": {
