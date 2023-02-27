@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * File containing ci_news module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ci_news_theme($existing, $type, $theme, $path) {
+  return [
+    'node__news__full' => [
+      'base hook' => 'node',
+    ],
+    'node__news__teaser' => [
+      'base hook' => 'node',
+    ],
+    'paragraph__slide' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}

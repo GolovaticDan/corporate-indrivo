@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_main_title_
+    - paragraphs.paragraphs_type.slide
+id: paragraph.slide.field_main_title_
+field_name: field_main_title_
+entity_type: paragraph
+bundle: slide
+label: 'Main title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

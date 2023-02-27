@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Corporate Indrivo theme override to display a slide content.
+ */
+#}
+<div {{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="slide-image"><img src="{{ bg.src }}" alt="{{ content.field_image.0['#item'].alt }}"/></div>
+
+  {% if content.field_main_title or content.field_slide_long_text or content.field_action_link %}
+    <div class="slide-content-wrap">
+      <div class="container slide-wrap">
+        <div class="slide-content-main {{ content.field_content_placement.0 }} {{ content.field_text_align.0 }} {{ content.field_text_color.0 }}">
+          {% if content.field_main_title | render %}
+            <div class="heading-text">{{ content.field_main_title }}</div>
+          {% endif %}
+          {% if content.field_slide_long_text | render %}
+            <div class="slide-long--text">{{ content.field_slide_long_text }}</div>
+          {% endif %}
+          {% if content.field_action_link | render %}
+            <div class="slide-button">
+              {{content.field_action_link}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

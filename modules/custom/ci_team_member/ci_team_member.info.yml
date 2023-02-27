@@ -1,0 +1,5 @@
+name: Corporate Indrivo Team Member
+type: module
+description: 'The Team Member configuration.'
+version: VERSION
+core_version_requirement: ^8 || ^9 || ^10

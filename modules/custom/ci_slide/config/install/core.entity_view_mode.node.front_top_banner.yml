@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.front_top_banner
+label: 'Front Top banner'
+targetEntityType: node
+cache: true

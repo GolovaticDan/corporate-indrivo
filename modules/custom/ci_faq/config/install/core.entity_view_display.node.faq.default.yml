@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.faq.body
+    - field.field.node.faq.field_meta_tags
+    - field.field.node.faq.field_question_category
+    - node.type.faq
+  module:
+    - text
+    - user
+id: node.faq.default
+targetEntityType: node
+bundle: faq
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_question_category:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_meta_tags: true

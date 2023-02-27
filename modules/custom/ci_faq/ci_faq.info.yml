@@ -1,0 +1,10 @@
+name: Corporate Indrivo FAQ
+type: module
+description: 'The FAQ configuration.'
+package: Corporate Indrivo
+version: CORPORATE_INDRIVO_VERSION
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - drupal:bef
+  - drupal:views_accordion
+  - drupal:jquery_ui_accordion

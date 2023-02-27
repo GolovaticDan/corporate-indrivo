@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slide.field_action_link
+    - field.field.paragraph.slide.field_content_placement
+    - field.field.paragraph.slide.field_image
+    - field.field.paragraph.slide.field_long_text
+    - field.field.paragraph.slide.field_main_title_
+    - field.field.paragraph.slide.field_text_align
+    - field.field.paragraph.slide.field_text_color
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.slide
+  module:
+    - image
+    - link
+id: paragraph.slide.default
+targetEntityType: paragraph
+bundle: slide
+mode: default
+content:
+  field_action_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_content_placement:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: image_image
+    weight: 3
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_long_text:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_main_title_:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_text_align:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_text_color:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

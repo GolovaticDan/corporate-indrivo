@@ -1,0 +1,367 @@
+/*---------------------------------------------------*/
+/*    SLIDE BLOCK
+/*---------------------------------------------------*/
+#slider {
+  overflow: hidden;
+  clear: left;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.slider-image {
+  position: relative;
+}
+
+#slider .hero {
+  max-height: 100vh;
+}
+
+.slider-image img,
+.slide-block img {
+  width: 100%;
+}
+
+.slide-block li {
+  list-style-type: none;
+  position: relative;
+}
+
+.slide-content-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.slide-wrap {
+  position: relative;
+  display: table;
+  height: 100%;
+  max-height: 100vh;
+}
+
+.slide-content-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  .heading-text {
+    .field-item:first-child {
+      animation-delay: .25s;
+    }
+
+    .field-item:nth-child(2) {
+      animation-delay: .7s;
+    }
+
+    .field-item:nth-child(3) {
+      animation-delay: 1s;
+    }
+  }
+
+  .slide-content-body {
+    animation-delay: 1.15s;
+    margin-top: 20px;
+  }
+
+  .slide-button {
+    animation-delay: 1.5s;
+  }
+}
+
+.slide-image {
+  width: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    min-height: 500px;
+    object-fit: contain;
+  }
+}
+
+.pre-heading-text {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.heading-text {
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: #333333;
+
+  .heading-text-content {
+    display: inline-block;
+  }
+}
+
+//Special styles
+.top-slider {
+  .container-fluid {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.homepage_slider {
+  .flexslider {
+    margin: 0;
+    padding: 0;
+    border: unset;
+
+    .slides {
+      list-style-type: none;
+      margin: 0;
+
+      img {
+        height: 500px;
+        object-fit: cover;
+      }
+    }
+
+    .flex-control-nav {
+      bottom: 16px;
+      z-index: 2;
+
+      li {
+        margin: 0 8px 0 0;
+
+        a {
+          width: 8px;
+          height: 8px;
+          background-color: rgba($color: #fff, $alpha: 0.5);
+
+          &.flex-active {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+
+    .flex-direction-nav {
+      a {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #fff;
+        background-color: transparent;
+        border-radius: 4px;
+
+        &::before,
+        &::after {
+          font-size: 32px;
+        }
+      }
+
+      .flex-prev,
+      .flex-next {
+        font-size: 0;
+        opacity: unset;
+
+        &:hover {
+          border-color: #fff;
+          background-color: #fff;
+        }
+      }
+
+      .flex-next {
+        &::before {
+          margin-right: 12px !important;
+          content: url(#{$iconpath}/arrow-right-white.svg);
+        }
+
+        &:hover {
+          &::before {
+            content: url(#{$iconpath}/arrow-right.svg);
+          }
+        }
+      }
+
+      .flex-prev {
+        &::before {
+          margin-left: 12px !important;
+          content: url(#{$iconpath}/arrow-left-white.svg);
+        }
+
+        &:hover {
+          &::before {
+            content: url(#{$iconpath}/arrow-left.svg);
+          }
+        }
+      }
+    }
+  }
+
+  .slide-content-main {
+    position: absolute;
+    top: 50%;
+    background-color: rgba($color: #000, $alpha: 0.1);
+    transform: translateY(-50%);
+    max-width: 600px;
+    padding: 32px;
+
+    .heading-text {
+      font-family: $font-bold;
+      font-size: 40px;
+      line-height: 47px;
+      margin-bottom: 8px;
+    }
+
+    .slide-content-field_long_text {
+      margin-top: 16px;
+
+      .text-content {
+        font-family: $font-second-regular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 19px;
+
+        b,
+        span {
+          color: $light-blue;
+        }
+      }
+    }
+
+
+    @include breakpoint-md-down {
+      max-width: 450px;
+
+      .heading-text {
+        font-size: 24px;
+        line-height: 30px;
+      }
+    }
+
+    @include breakpoint-sm-down {
+      max-width: 300px;
+    }
+
+  }
+
+  .slide-button {
+    margin-top: 32px;
+    width: fit-content;
+
+    .field--name-field-action-link {
+      a {
+        @extend .mo-btn;
+        display: block;
+        width: fit-content;
+        text-transform: uppercase;
+        text-decoration: unset;
+        border: 2px solid;
+
+        &:hover,
+        &:focus {
+          border: 2px solid $main-blue;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .node--type-slide {
+    .field--name-field-page-section {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// General classes
+.content-center {
+  margin: 0 auto;
+
+  .slide-button,
+  .banner-button {
+    margin: 0 auto;
+  }
+}
+
+.content-right {
+  margin-left: auto;
+
+  .slide-button,
+  .banner-button {
+    margin-left: auto;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.white {
+  color: #fff !important;
+  opacity: unset;
+
+  .heading-text,
+  .banner-title,
+  .slide-long--text,
+  .banner-text .field--name-field-long-text {
+    color: #fff !important;
+  }
+
+  .slide-button,
+  .banner-button {
+
+    .field--name-field-action-link,
+    .field--name-field-call-to-action {
+      a {
+        border-color: #fff !important;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+.dark {
+  color: $dark-blue !important;
+
+  .heading-text,
+  .banner-title,
+  .slide-long--text,
+  .banner-text .field--name-field-long-text {
+    color: $dark-blue !important;
+  }
+
+  .slide-button,
+  .banner-button {
+
+    .field--name-field-action-link,
+    .field--name-field-call-to-action {
+      a {
+        border-color: $dark-blue !important;
+        color: $dark-blue !important;
+      }
+    }
+  }
+}
+
+.colored,
+.colored * {
+  color: $light-blue !important;
+
+  .heading-text,
+  .banner-title,
+  .slide-long--text,
+  .banner-text .field--name-field-long-text {
+    color: $light-blue !important;
+  }
+
+  .slide-button,
+  .banner-button {
+
+    .field--name-field-action-link,
+    .field--name-field-call-to-action {
+      a {
+        border-color: $light-blue !important;
+        color: $light-blue !important;
+      }
+    }
+  }
+}

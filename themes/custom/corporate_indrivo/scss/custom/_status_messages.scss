@@ -1,0 +1,128 @@
+.simple-status-messages {
+
+  em.placeholder {
+    cursor: pointer;
+    background-color: transparent;
+    opacity: 1;
+    min-height: auto;
+    vertical-align: unset;
+    margin: 0 4px;
+
+    a {
+      color: $dark-blue;
+    }
+  }
+
+  .status-messages {
+    position: relative;
+    min-width: 300px;
+    padding: 16px 52px 16px 70px;
+    font-family: $font-regular;
+    font-size: 14px;
+    line-height: 20px;
+    color: $dark-grey;
+    background: no-repeat 16px 14px;
+    background-size: 24px;
+    background-color: #fff;
+    border: solid $platinum;
+    border-width: 1px 1px 1px 0;
+    border-radius: 4px;
+
+    .status-message-close {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      opacity: 0.5;
+      right: 16px;
+      top: 14px;
+
+      span {
+        position: unset;
+        font-size: 0;
+      }
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+    }
+
+    .messages__list {
+      .messages__item {
+        &::marker {
+          opacity: 0.5;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .messages--status,
+  .messages--info,
+  .messages--webform {
+    background-image:url(#{$iconpath}/success_check.svg);
+    box-shadow: -5px 0 0 #3A8646;
+
+    .status-message-close {
+      background:url(#{$iconpath}/close-green.svg) no-repeat center;
+    }
+
+    .messages__list {
+      .messages__item {
+        &::marker {
+          color: #3A8646;
+        }
+      }
+    }
+
+    em.placeholder {
+      color: #3A8646;
+    }
+  }
+
+  .messages--warning {
+    background-image: url(#{$iconpath}/warning_important.svg);
+    box-shadow: -5px 0 0 #F09C2A;
+
+    .status-message-close {
+      background:url(#{$iconpath}/close-orange.svg) no-repeat center;
+    }
+
+    .messages__list {
+      .messages__item {
+        &::marker {
+          color: #F09C2A;
+        }
+      }
+    }
+
+    em.placeholder {
+      color: #F09C2A;
+    }
+  }
+
+  .messages--error {
+    background-image:url(#{$iconpath}/error_close.svg);
+    box-shadow: -5px 0 0 #CD3C34;
+
+    .status-message-close {
+      background:url(#{$iconpath}/close-red.svg) no-repeat center;
+    }
+
+    .messages__list {
+      .messages__item {
+        &::marker {
+          color: #CD3C34;
+        }
+      }
+    }
+
+    em.placeholder {
+      color: #CD3C34;
+    }
+  }
+
+  .messages__list {
+    list-style-type: square;
+  }
+}

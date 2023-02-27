@@ -1,0 +1,267 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the standard installation profile.
+ */
+
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\user\Entity\User;
+use Drupal\shortcut\Entity\Shortcut;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function corporate_indrivo_install() {
+  // Assign user 1 the "administrator" role.
+  /** @var \Drupal\user\Entity\User $user */
+  $user = User::load(1);
+  $user->addRole('administrator');
+  $user->save();
+
+  // Populate the default shortcut set.
+  $shortcut = Shortcut::create([
+    'shortcut_set' => 'default',
+    'title' => t('Add content'),
+    'weight' => -20,
+    'link' => ['uri' => 'internal:/node/add'],
+  ]);
+  $shortcut->save();
+
+  $shortcut = Shortcut::create([
+    'shortcut_set' => 'default',
+    'title' => t('All content'),
+    'weight' => -19,
+    'link' => ['uri' => 'internal:/admin/content'],
+  ]);
+  $shortcut->save();
+}
+
+/**
+ * Implements hook_install_tasks().
+ */
+function corporate_indrivo_install_tasks() {
+  $tasks = [
+    'corporate_indrivo_components_form' => [
+      'display_name' => t('Enable additional components'),
+      'type' => 'form',
+      'function' => 'Drupal\corporate_indrivo\Installer\Form\AdditionalComponentsForm',
+    ],
+    'corporate_indrivo_additional_components_install' => [
+      'display_name' => t('Install additional components'),
+      'type' => 'batch',
+    ],
+    'ci_languages_form' => [
+      'display_name' => t('Configure languages'),
+      'type' => 'form',
+      'function' => 'Drupal\corporate_indrivo\Installer\Form\LanguagesForm',
+    ],
+    'corporate_indrivo_import_translations' => [
+      'display_name' => t('Import translations'),
+      'type' => 'batch',
+    ],
+    'corporate_indrivo_enable_translation_modules' => [
+      'display_name' => t('Install additional translation modules'),
+      'type' => 'batch',
+    ],
+    'corporate_indrivo_enable_subtheme_batch' => [
+      'display' => TRUE,
+      'display_name' => t('Install and enable subtheme'),
+      'type' => 'batch',
+    ],
+  ];
+
+  return $tasks;
+}
+
+/**
+ * Install additional components in a batch.
+ *
+ * @param array $install_state
+ *   The installation state.
+ *
+ * @return array
+ *   Batch array.
+ */
+function corporate_indrivo_additional_components_install(array &$install_state) {
+  $modules = $install_state['ci_additional_modules'];
+
+  $batch = $operations = [];
+  if ($modules) {
+    foreach ($modules as $module) {
+      $operations[] = [
+        'corporate_indrivo_install_module',
+        [$module],
+      ];
+    }
+  }
+
+  if (!empty($operations)) {
+    $batch = [
+      'operations' => $operations,
+      'title' => t('Installing selected components'),
+      'error_message' => t('Installation error.'),
+    ];
+  }
+
+  return $batch;
+}
+
+/**
+ * Allow to install a single module using module_installer service.
+ *
+ * @param string $module
+ *   Module machine name.
+ * @param array $context
+ *   Batch context.
+ */
+function corporate_indrivo_install_module(string $module, array &$context) {
+  \Drupal::service('module_installer')->install([$module], TRUE);
+  $context['message'] = t('Installed %module module.', ['%module' => $module]);
+}
+
+/**
+ * Batch content init creating.
+ *
+ * @return array
+ *   Batch defintion.
+ */
+function corporate_indrivo_enable_init_content_batch() {
+  $types = [
+    'block',
+    'media',
+    'content',
+    'block_second_run',
+    'index_content',
+  ];
+
+  $operations = [];
+  foreach ($types as $type) {
+    $operations[] = ['d_content_init_create_all_batch', [$type]];
+  }
+
+  return [
+    'operations' => $operations,
+    'title' => t('Init content'),
+  ];
+}
+
+/**
+ * Get all available languages.
+ */
+function _country_get_predefined_list() {
+  $languages = \Drupal::languageManager()->getStandardLanguageList();
+  foreach ($languages as $langcode => $language) {
+    $languages[$langcode] = $language[0];
+  }
+  return $languages;
+}
+
+/**
+ * Submit callback: saves selected languages to be processed on the next step.
+ */
+function corporate_indrivo_configure_translations_form_submit(&$form, &$form_state) {
+  $form('multilanguage_selected_translations', $form_state['values']['translations']);
+}
+
+/**
+ * Installation task callback: creates batch process to enable additional
+ * languages and download relevant interface translations.
+ */
+function corporate_indrivo_import_translations() {
+  $languages = \Drupal::request()->request->get('translations');
+  if ($languages) {
+    $operations = [];
+    foreach ($languages as $langcode) {
+      $operations[] = [
+        'import_languages',
+        [$langcode],
+      ];
+    }
+  }
+  if (!empty($operations)) {
+    return [
+      'operations' => $operations,
+      'title' => t('Installing selected languages'),
+      'error_message' => t('Installation error.'),
+    ];
+  }
+}
+
+/**
+ * Add new language to the system.
+ */
+function import_languages($langcode) {
+  $language = ConfigurableLanguage::createFromLangcode($langcode);
+  $language->save();
+}
+
+/**
+ * Installation task callback: creates batch process to enable additional
+ * translation modules.
+ */
+function corporate_indrivo_enable_translation_modules() {
+  $modules = ['config_translation', 'content_translation', 'locale'];
+  $languages = \Drupal::languageManager()->getLanguages();
+
+    if (count($languages) > 1) {
+    $batch = $operations = [];
+    foreach ($modules as $module) {
+      $operations[] = [
+        'corporate_indrivo_install_module',
+        [$module],
+      ];
+    }
+
+    if (!empty($operations)) {
+      $batch = [
+        'operations' => $operations,
+        'title' => t('Installing selected components'),
+        'error_message' => t('Installation error.'),
+      ];
+    }
+    return $batch;
+  }
+
+}
+
+/**
+ * Batch enable of subtheme.
+ *
+ * @return array
+ *   Batch defintion.
+ */
+function corporate_indrivo_enable_subtheme_batch():array {
+  return [
+    'operations' => [
+      ['corporate_indrivo_enable_subtheme', []],
+    ],
+    'title' => t('Install and enable subtheme'),
+  ];
+}
+
+/**
+ * Enable subtheme.
+ *
+ * @param array $context
+ *   Batch context.
+ */
+function corporate_indrivo_enable_subtheme(array &$context) {
+  try {
+    \Drupal::service('theme_installer')->install(['corporate_indrivo']);
+    \Drupal::configFactory()
+      ->getEditable('system.theme')
+      ->set('default', 'corporate_indrivo')
+      ->set('admin', 'claro')
+      ->save();
+    $context['message'] = t('Installed %theme theme', ['%theme' => 'corporate_indrivo']);
+  }
+  catch (Exception $e) {
+    \Drupal::logger('corporate_indrivo_install')->notice('No subtheme detected.');
+    $context['message'] = t('%theme theme not detected, skipping theme installation.', ['%theme' => 'corporate_indrivo']);
+  }
+}

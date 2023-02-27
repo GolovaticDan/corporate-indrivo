@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.front_top_banner
+    - field.field.node.slide.field_slide_reference
+    - node.type.slide
+  module:
+    - entity_reference_revisions
+    - user
+id: node.slide.front_top_banner
+targetEntityType: node
+bundle: slide
+mode: front_top_banner
+content:
+  field_slide_reference:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.google_reviews
+  module:
+    - system
+    - views
+  theme:
+    - corporate_indrivo
+id: views_block__google_reviews_block_1
+theme: corporate_indrivo
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:google_reviews-block_1'
+settings:
+  id: 'views_block:google_reviews-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

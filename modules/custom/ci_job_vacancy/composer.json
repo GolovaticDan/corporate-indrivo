@@ -1,0 +1,20 @@
+{
+    "name": "indrivo/ci_job_vacancy",
+    "description": "The Job Vacancy content type dependencies.",
+    "type": "drupa-module",
+    "authors": [
+        {
+            "name": "Dan Golovatic",
+            "email": "dan.golovatic@indrivo.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/webform": "^6.1"
+    }
+}

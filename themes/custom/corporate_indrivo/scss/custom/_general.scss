@@ -1,0 +1,470 @@
+.page-wrapper {
+  max-width: 100%;
+  padding: 64px 0;
+}
+
+body {
+  background-image: unset;
+  background: #fff;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+html {
+  font-family: $font-regular;
+  line-height: normal;
+  font-weight: normal;
+  color: $dark-blue;
+}
+
+h1,
+h2,
+.block__title {
+  font-family: $font-bold;
+  font-size: 40px;
+  line-height: 47px;
+  letter-spacing: 0em;
+  color: $dark-blue;
+}
+
+.page-wrapper {
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+
+  @include breakpoint-xxl-up {
+    padding: 0 !important;
+  }
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  @include breakpoint-xxl-up {
+    padding: 0;
+  }
+}
+
+a {
+  outline: none;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border: 0;
+  }
+}
+
+.main-content__container {
+  padding: 0;
+}
+
+.overlay {
+  background: rgba($color: $light-blue, $alpha: 1.0);
+}
+
+//Grid desktop
+@include breakpoint-sm-up {
+  .layout--pass--content-medium>* {
+    grid-column: 1 / 15;
+  }
+}
+
+.region>* {
+  margin-bottom: 0;
+}
+
+.ajax-progress-throbber {
+  .throbber {
+    border-color: $dark-blue transparent $dark-blue $dark-blue;
+  }
+}
+
+.ajax-progress-fullscreen {
+  &:before {
+    border-color: $dark-blue transparent $dark-blue $dark-blue;
+  }
+}
+
+//Pager
+.pager {
+  .pager__items {
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid $platinum;
+
+    .pager__item {
+      width: 24px;
+      height: 24px;
+      padding: 3px;
+      border-radius: 2px;
+      margin-right: 4px;
+
+      .pager__link {
+        font-family: $font-second-regular;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        color: $main-blue;
+
+        &:hover {
+          background: transparent;
+        }
+
+        &:focus {
+          outline: unset;
+        }
+      }
+
+      svg {
+        fill: transparent;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $main-blue;
+
+        .pager__link {
+          color: #fff;
+          font-weight: 400;
+          font-size: 14px;
+        }
+
+        svg {
+          stroke: #fff;
+        }
+      }
+    }
+
+    .pager__item--active {
+      font-weight: 400;
+      font-size: 14px;
+      background-color: $main-blue;
+      color: #fff;
+    }
+  }
+}
+
+
+//Page titles
+.page-title--section {
+  background-image: url(#{$imgpath}/Top.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 64px 0;
+
+  .block-page-title-block {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+
+    .page-title {
+      font-family: $font-bold;
+      font-size: 40px;
+      line-height: 47px;
+      text-align: center;
+      color: #fff;
+
+      @include breakpoint-md-down {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+.page-breadcrumb--section {
+  padding: 32px 0;
+  margin-bottom: 0;
+
+  .breadcrumb {
+    margin-bottom: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .breadcrumb__content {
+    padding: 0;
+    margin: 0;
+
+    .breadcrumb__list {
+      width: auto;
+      white-space: normal;
+
+      @include breakpoint-sm-down {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+      }
+
+      .breadcrumb__item {
+        font-family: $font-second-bold;
+        font-size: 16px;
+        line-height: 22px;
+        color: rgba($color: $dark-blue, $alpha: 0.5);
+
+        .breadcrumb__link {
+          color: $main-blue;
+        }
+
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image:url(#{$iconpath}/chevron-right-bl.svg);
+          background-size: 14px;
+          border: unset;
+          transform: unset;
+        }
+      }
+    }
+  }
+
+  .region--breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .print__wrapper--pdf {
+      position: relative;
+
+      .print__link--pdf {
+        display: block;
+        font-size: 0;
+        width: 32px;
+        height: 32px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image:url(#{$iconpath}/printer.svg);
+        border: 2px solid $main-blue;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: $main-blue;
+          background-image:url(#{$iconpath}/printer_wh.svg);
+        }
+      }
+    }
+  }
+}
+
+//Task bar
+.block-local-tasks-block {
+  margin: 32px 0;
+
+  .tabs-wrapper {
+    border-bottom: 1px solid $platinum;
+  }
+
+  .tabs__tab {
+    margin-bottom: 0;
+  }
+
+  .tabs {
+    width: fit-content;
+    margin: 0 auto !important;
+
+    .tabs__link {
+      width: fit-content;
+      height: fit-content;
+      padding: 16px 32px;
+      background-color: #fff;
+      border: unset;
+      font-family: $font-second-regular;
+      font-size: 16px;
+      line-height: 22px;
+      color: $dark-blue;
+
+      &.is-active {
+        font-family: $font-second-bold;
+
+        &::after {
+          border-top: 2px solid $dark-blue;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $dark-blue;
+        color: #fff;
+      }
+
+      &:focus {
+        outline: unset;
+      }
+    }
+
+    @include breakpoint-md-down {
+      .tabs__link {
+        &.is-active {
+          &:after {
+            border-top: unset;
+            border-color: $dark-blue;
+          }
+        }
+      }
+
+      .tabs__trigger-icon>span {
+        border-color: $dark-blue;
+      }
+    }
+  }
+}
+
+//Ajax Throbber
+.ajax-progress-throbber {
+  position: fixed;
+  top: 0;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: $main-blue, $alpha: 0.1);
+  z-index: 999;
+}
+
+.ajax-progress-fullscreen,
+.ajax-progress-throbber .throbber,
+.ajax-progress-fullscreen:before {
+  box-shadow: unset !important;
+  border: unset;
+}
+
+.ajax-throbber {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9;
+
+  .sk-cube {
+    width: 20px;
+    height: 20px;
+    background-color: $main-blue !important;
+  }
+}
+
+//404 page
+.page-404 {
+  .error-404 {
+    padding: 32px;
+
+    .text-medium {
+      margin-top: 0;
+      font-family: $font-bold;
+      font-size: 40px;
+      line-height: 47px;
+      letter-spacing: 0em;
+      color: $dark-blue;
+    }
+
+    .subtitle {
+      margin-bottom: 32px;
+      font-family: $font-second-regular;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: 0em;
+      color: $dark-blue;
+    }
+
+    .back-to-home {
+      border-color: $main-blue;
+      color: $main-blue;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+}
+
+//Content body
+.field--name-field-inline-text,
+.field--name-body {
+  font-family: $font-second-regular;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: $dark-blue;
+
+  p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  img {
+    min-width: 100%;
+  }
+
+  b,
+  strong {
+    font-family: $font-second-bold;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-family: $font-bold;
+    color: $dark-blue;
+
+    a {
+      font-family: $font-bold !important;
+      font-size: inherit;
+    }
+  }
+
+  a {
+    font-family: $font-second-regular;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: $main-blue;
+    text-decoration: unset;
+    box-shadow: unset;
+    background-color: unset;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      border: unset;
+      outline: unset;
+      box-shadow: unset;
+      background-color: unset;
+      color: $main-blue;
+    }
+
+    b,
+    strong {
+      font-family: $font-second-bold;
+    }
+  }
+}
