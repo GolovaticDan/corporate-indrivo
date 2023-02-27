@@ -63,9 +63,9 @@
     ],
     "require": {
         "composer/installers": "^2.0",
-        "drupal/core-composer-scaffold": "^10.0",
-        "drupal/core-project-message": "^10.0",
-        "drupal/core-recommended": "^10.0",
+        "drupal/core-composer-scaffold": "^9.5.3",
+        "drupal/core-project-message": "^9.5.3",
+        "drupal/core-recommended": "^9.5.3",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.3",
         "drupal/advagg": "^5.0",
