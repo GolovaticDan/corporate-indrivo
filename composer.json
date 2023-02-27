@@ -20,9 +20,9 @@
                 "version": "dev-main",
                 "type": "drupal-profile",
                 "source": {
-                    "url": "https://deploy:wxF56VUGsFr7v-y7P6zx@gitlab.dev.indrivo.com/php-team/corporate-indrivo.git",
+                    "url": "https://gitlab+deploy-token-61:RW5EdSsYdAyZbcFQKhuJ@gitlab.dev.indrivo.com/php-team/indrivo_profiles/corporate-indrivo.git",
                     "type": "git",
-                    "reference": "1.0"
+                    "reference": "master"
                 },
                 "minimum-stability": "dev",
                 "require": {
