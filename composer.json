@@ -117,7 +117,7 @@
     "extra": {
         "merge-plugin": {
             "require": [
-                "web/profiles/contrib/corporate_indrivo/modules/custom/*/composer.json"
+                "web/profiles/contrib/corporate-indrivo/modules/custom/*/composer.json"
             ],
             "recurse": true
         },
